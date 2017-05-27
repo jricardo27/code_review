@@ -1,1 +1,7 @@
+# Virtualenv
+.localpython/
+.src/
 node_modules/
+
+# Exclude intermediary compiled files
+src/html/include/code

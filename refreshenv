@@ -1,0 +1,15 @@
+#!/bin/bash
+
+install_npm_packages() {
+    if which node > /dev/null; then
+        npm install
+    else
+        echo "Node is not installed. Please install it and then run `npm install`"
+    fi
+}
+
+#==============================================================================
+
+install_npm_packages
+
+pip install -r requirements.txt
