@@ -1,6 +1,7 @@
 'use strict';
 
 import babel from 'gulp-babel';
+import exec from 'gulp-exec';
 import gulp from 'gulp';
 import eslint from 'gulp-eslint';
 import fileinclude from 'gulp-file-include';
@@ -17,6 +18,14 @@ const dirs = {
  * Source code locations
  */
 const source = {
+    code: {
+        python: [
+            `${dirs.src}/code/**/*.py`,
+        ],
+    },
+    css: [
+        `${dirs.src}/css/**/*`,
+    ],
     html: [
         `${dirs.src}/html/index.html`,
     ],
@@ -44,7 +53,7 @@ gulp.task('sass', () => {
 /**
  * Lint javascript files.
  */
-gulp.task('lintjs', function() {
+gulp.task('lintjs', function () {
     return gulp.src(source.js)
         .pipe(eslint())
         .pipe(eslint.format())
@@ -55,7 +64,7 @@ gulp.task('lintjs', function() {
 /**
  * Copy javascript.
  */
-gulp.task('js', function() {
+gulp.task('js', function () {
     return gulp.src(source.js, {base: `${dirs.src}/js`})
         .pipe(sourcemaps.init())
         .pipe(babel({
@@ -67,15 +76,39 @@ gulp.task('js', function() {
 
 
 /**
+ * Pygmentize (Convert code to HTML)
+ */
+gulp.task('highlight', function () {
+    let options = {
+        continueOnError: false, // default = false, true means don't emit error event
+        pipeStdout: true, // default = false, true means stdout is written to file.contents
+    };
+
+    gulp.src(source.code.python)
+        .pipe(exec('pygmentize -f html <%= file.path %>', options))
+        .pipe(gulp.dest(`${dirs.src}/html/include/code`))
+});
+
+
+/**
  * Compile HTML.
  */
-gulp.task('html', function() {
-  gulp.src(source.html)
-    .pipe(fileinclude({
-      prefix: '@@',
-      basepath: '@file'
-    }))
-    .pipe(gulp.dest(dirs.dest));
+gulp.task('html', function () {
+    gulp.src(source.html)
+        .pipe(fileinclude({
+            prefix: '@@',
+            basepath: '@file'
+        }))
+        .pipe(gulp.dest(dirs.dest));
+});
+
+
+/**
+ * Copy CSS.
+ */
+gulp.task('css', function () {
+    return gulp.src(source.css)
+        .pipe(gulp.dest(`${dirs.dest}/css`));
 });
 
 
@@ -86,7 +119,9 @@ gulp.task('build', [
     'lintjs',
     'sass',
     'js',
+    'highlight',
     'html',
+    'css',
 ]);
 
 
