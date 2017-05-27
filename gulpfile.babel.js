@@ -18,7 +18,7 @@ const dirs = {
  */
 const source = {
     html: [
-        `${dirs.src}/html/**/*`,
+        `${dirs.src}/html/index.html`,
     ],
     js: [
         `${dirs.src}/js/**/*`,
