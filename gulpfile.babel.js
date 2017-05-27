@@ -10,7 +10,7 @@ import sourcemaps from 'gulp-sourcemaps';
 
 const dirs = {
     src: 'src',
-    dest: 'build'
+    dest: 'docs'
 };
 
 
