@@ -23,6 +23,9 @@ const source = {
             `${dirs.src}/code/**/*.py`,
         ],
     },
+    css: [
+        `${dirs.src}/css/**/*`,
+    ],
     html: [
         `${dirs.src}/html/index.html`,
     ],
@@ -101,6 +104,15 @@ gulp.task('html', function () {
 
 
 /**
+ * Copy CSS.
+ */
+gulp.task('css', function () {
+    return gulp.src(source.css)
+        .pipe(gulp.dest(`${dirs.dest}/css`));
+});
+
+
+/**
  * Build all static assets.
  */
 gulp.task('build', [
@@ -109,6 +121,7 @@ gulp.task('build', [
     'js',
     'highlight',
     'html',
+    'css',
 ]);
 
 
