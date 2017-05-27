@@ -1,4 +1,4 @@
 Notes on Code Review
 ====================
 
-To compile the source code, run `gulp`
+To compile the source code, run ``gulp``
