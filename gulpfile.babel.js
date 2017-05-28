@@ -79,12 +79,12 @@ gulp.task('js', function () {
  * Pygmentize (Convert code to HTML)
  */
 gulp.task('highlight', function () {
-    let options = {
+    const options = {
         continueOnError: false, // default = false, true means don't emit error event
         pipeStdout: true, // default = false, true means stdout is written to file.contents
     };
 
-    gulp.src(source.code.python)
+    return gulp.src(source.code.python)
         .pipe(exec('pygmentize -f html <%= file.path %>', options))
         .pipe(gulp.dest(`${dirs.src}/html/include/code`))
 });
@@ -94,7 +94,7 @@ gulp.task('highlight', function () {
  * Compile HTML.
  */
 gulp.task('html', function () {
-    gulp.src(source.html)
+    return gulp.src(source.html)
         .pipe(fileinclude({
             prefix: '@@',
             basepath: '@file'
@@ -115,14 +115,19 @@ gulp.task('css', function () {
 /**
  * Build all static assets.
  */
-gulp.task('build', [
-    'lintjs',
-    'sass',
-    'js',
-    'highlight',
-    'html',
-    'css',
-]);
+gulp.task(
+    'build',
+    [
+        'lintjs',
+        'js',
+        'sass',
+        'css',
+        'highlight',
+    ],
+    function () {
+        gulp.start('html');
+    }
+);
 
 
 /**

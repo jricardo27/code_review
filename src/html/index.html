@@ -12,25 +12,54 @@
       screen_capture_injected="true" cz-shortcut-listen="true">
     @@include('./include/navigation.html', {
         "sections": [
-            { "id": "style", "title": "Style" },
-            { "id": "formatting", "title": "Formatting" },
-            { "id": "gherkin", "title": "Gherkin" }
+            { "id": "top", "title": "Top" },
+            { "id": "formatting", "title": "Code lay-out" }
     ]})
 
+    <!--
+        { "id": "style", "title": "Style" },
+        { "id": "gherkin", "title": "Gherkin" }
+    -->
+
+
     <div class="container">
-        <div class="jumbotron">
-            <h1 class="justify-content-center">Notes on Code Review</h1>
-            <br>
+        <div id="top" class="jumbotron">
+            <h1 class="justify-content-center">Tips before asking for a Code Review...</h1>
+            <p class="lead">
+                Before asking for a <strong>Code Review</strong> please do one yourself
+                over your own Pull Request (PR).
+            </p>
+            <hr class="my-4">
+            <p>The following is a list of the most frequent flaws found in code reviews.</p>
+            <p>
+                These rules align with <strong>PEP8</strong> and in some cases discard some
+                of the alternatives proposed as the other are better.
+                <br>
+
+                For example the following two cases are considered valid by
+                <a href="https://www.python.org/dev/peps/pep-0008/#id17"><strong>PEP8</strong></a>:
+            </p>
+            @@include('./include/code/pep8/good_indentation.py')
+
+            @@include('./include/code/pep8/bad_indentation.py')
+
+            <p>
+                But for our purposes the second example is not valid as:
+                <ol>
+                    <li>It would require re-indenting if the variable or the function name change.</li>
+                    <li>It wastes space by over-indenting.</li>
+                </ol>
+            </p>
         </div>
 
         <div class="row">
             <div class="col-md-12">
                 <div class="main-timeline">
-                    @@include('./content/style.html', {"id": "style" })
+                    <!-- @ @include('./content/style.html', {"id": "style" }) -->
 
                     @@include('./content/formatting.html', {"id": "formatting" })
 
-                    @@include('./content/gherkin.html', {"id": "gherkin" })
+                    <!-- @ @include('./content/gherkin.html', {"id": "gherkin" }) -->
                 </div>
             </div>
         </div>
