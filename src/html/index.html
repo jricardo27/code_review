@@ -2,13 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Code Review Notes</title>
 
     @@include('./include/style.html')
 </head>
-<body>
-    @@include('./include/code/example.py')
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top"
+      screen_capture_injected="true" cz-shortcut-listen="true">
+    @@include('./include/navigation.html', {
+        "sections": [
+            { "id": "style", "title": "Style" },
+            { "id": "formatting", "title": "Formatting" },
+            { "id": "gherkin", "title": "Gherkin" }
+    ]})
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="justify-content-center">Notes on Code Review</h1>
+            <br>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="main-timeline">
+                    @@include('./content/style.html', {"id": "style" })
+
+                    @@include('./content/formatting.html', {"id": "formatting" })
+
+                    @@include('./content/gherkin.html', {"id": "gherkin" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     @@include('./include/javascript.html')
 </body>
 </html>
