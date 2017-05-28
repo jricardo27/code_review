@@ -1,0 +1,20 @@
+<nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-primary"
+     role="navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                @@for (var i = 0; i < sections.length; i++) {
+                    <li class="nav-item">
+                        <a class="nav-link" href="#`+sections[i].id+`">`+sections[i].title+`</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>

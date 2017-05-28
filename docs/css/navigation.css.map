@@ -1,0 +1,1 @@
+{"version":3,"file":"navigation.css","sources":["navigation.scss"],"sourcesContent":["$nav-height: 40px;\n\nbody {\n    padding-top: $nav-height;\n}\n"],"names":[],"mappings":"AAEA,AAAA,IAAI,CAAC;EACD,WAAW,EAHF,IAAI,GAIhB"}

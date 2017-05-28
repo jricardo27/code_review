@@ -33,7 +33,7 @@ const source = {
         `${dirs.src}/js/**/*`,
     ],
     sass: [
-        `${dirs.src}/scss/app.scss`,
+        `${dirs.src}/scss/navigation.scss`,
     ]
 };
 
@@ -46,7 +46,7 @@ gulp.task('sass', () => {
         .pipe(sourcemaps.init())
         .pipe(sass.sync().on('error', sass.logError))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(`${dirs.dest}/styles/`));
+        .pipe(gulp.dest(`${dirs.dest}/css/`));
 });
 
 
