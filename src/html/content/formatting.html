@@ -1,11 +1,81 @@
 <div id="@@id" class="timeline">
     <div class="timeline-icon"><i class="fa fa-globe"></i></div>
     <div class="timeline-content">
-        <h4 class="title">Formatting</h4>
+        <h4 class="title">Code lay-out</h4>
         <div class="description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus faucibus vitae leo sed fermentum. Sed eu molestie diam, rutrum ultricies nulla. Praesent id tincidunt nulla.
+            <p>
+                Formatting problems are easy to overlook but they are the most
+                common.
+                <br>
+                Some of them are highlighted by tools like <kbd>pylint</kbd>
+                but is not always the case.
+                <br>
+                These small omissions cause a lot of going back and forth
+                wasting the reviewers precious time.
+            </p>
 
-            @@include('../include/code/example.py')
+            <div class="card">
+                <div class="card-header">
+                    Python
+                </div>
+                <div class="card-block">
+                    <h4 class="card-title">
+                        Trailing commas
+                        <a href="#TrailingCommaRationale"
+                            data-toggle="collapse"
+                            aria-expanded="false"
+                            aria-controls="TrailingCommaRationale">
+                        <i class="fa fa-commenting"></i>
+                      </a>
+                    </h4>
+                    <div class="collapse" id="TrailingCommaRationale">
+                          <p class="lead">
+                              Leaving a <strong>trailing comma</strong> on the last entry
+                              is useful because then every line has the same format
+                              and adding entries to the end is the same as adding them
+                              to the middle.
+                          </p>
+                    </div>
+                    <p class="card-text">
+                        <strong>Dictionaries</strong>
+                        @@include('../include/code/formatting/trailing_commas_dict.py')
+
+                        <strong>Calling Functions</strong>
+                        @@include('../include/code/formatting/trailing_commas_func.py')
+                    </p>
+                    <h4 class="card-title">
+                        Breaking long lines
+                        <a href="#BreakLongLinesRationale"
+                            data-toggle="collapse"
+                            aria-expanded="false"
+                            aria-controls="BreakLongLinesRationale">
+                        <i class="fa fa-commenting"></i>
+                      </a>
+                    </h4>
+                    <div class="collapse" id="BreakLongLinesRationale">
+                          <p class="lead">
+                              <strong>PEP8</strong> recommend limiting all lines to a maximum of
+                              <a href="https://www.python.org/dev/peps/pep-0008/#id19">79 characters.</a>
+                              <br>
+                              However there are some projects that raised the limit to 119 characters.
+                              <br>
+                              My recommendation is to stick to 79 characters even when working on projects with
+                              a longer limit and only use the extra limit when breaking the line makes it harder
+                              to read.
+                          </p>
+                    </div>
+                    <p class="card-text">
+                        Even though <strong>PEP8</strong> considers <strong>backslashes</strong>
+                        appropriate in some cases. They are totally discouraged in this guide.
+                        <br>
+                        The reason for that is that other alternatives are better and errors could be caused
+                        if a space is added after the <strong>backslash</strong>.
+                        <br>
+                        <strong>Alternatives to break long lines:</strong>
+                        @@include('../include/code/long_lines/good_line_breakers.py')
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
     <div class="border"></div>

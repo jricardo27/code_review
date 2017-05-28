@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Code Review Notes</title>
+
+    <link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+      integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+      crossorigin="anonymous">
+<link rel="stylesheet" href="css/timeline.css">
+<link rel="stylesheet" href="css/pygments.css">
+<link rel="stylesheet" href="css/navigation.css">
+
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top"
+      screen_capture_injected="true" cz-shortcut-listen="true">
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-primary"
+     role="navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                
+                    <li class="nav-item">
+                        <a class="nav-link" href="#top">Top</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a class="nav-link" href="#formatting">Code lay-out</a>
+                    </li>
+                
+            </ul>
+            <span class="navbar-text">
+                Before asking for a Code Review...
+            </span>
+        </div>
+    </div>
+</nav>
+
+
+    <!--
+        { "id": "style", "title": "Style" },
+        { "id": "gherkin", "title": "Gherkin" }
+    -->
+
+
+    <div class="container">
+        <div id="top" class="jumbotron">
+            <h1 class="justify-content-center">Tips before asking for a Code Review...</h1>
+            <p class="lead">
+                Before asking for a <strong>Code Review</strong> please do one yourself
+                over your own Pull Request (PR).
+            </p>
+            <hr class="my-4">
+            <p>The following is a list of the most frequent flaws found in code reviews.</p>
+            <p>
+                These rules align with <strong>PEP8</strong> and in some cases discard some
+                of the alternatives proposed as the other are better.
+                <br>
+
+                For example the following two cases are considered valid by
+                <a href="https://www.python.org/dev/peps/pep-0008/#id17"><strong>PEP8</strong></a>:
+            </p>
+            <div class="highlight"><pre><span></span><span class="n">foo</span> <span class="o">=</span> <span class="n">long_function_name</span><span class="p">(</span>
+    <span class="n">var_one</span><span class="p">,</span> <span class="n">var_two</span><span class="p">,</span> <span class="n">var_three</span><span class="p">,</span> <span class="n">var_four</span><span class="p">)</span>
+</pre></div>
+
+
+            <div class="highlight"><pre><span></span><span class="n">foo</span> <span class="o">=</span> <span class="n">long_function_name</span><span class="p">(</span><span class="n">var_one</span><span class="p">,</span> <span class="n">var_two</span><span class="p">,</span>
+                         <span class="n">var_three</span><span class="p">,</span> <span class="n">var_four</span><span class="p">)</span>
+</pre></div>
+
+
+            <p>
+                But for our purposes the second example is not valid as:
+                <ol>
+                    <li>It would require re-indenting if the variable or the function name change.</li>
+                    <li>It wastes space by over-indenting.</li>
+                </ol>
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="main-timeline">
+                    <!-- @ @include('./content/style.html', {"id": "style" }) -->
+
+                    <div id="formatting" class="timeline">
+    <div class="timeline-icon"><i class="fa fa-globe"></i></div>
+    <div class="timeline-content">
+        <h4 class="title">Code lay-out</h4>
+        <div class="description">
+            <p>
+                Formatting problems are easy to overlook but they are the most
+                common.
+                <br>
+                Some of them are highlighted by tools like <kbd>pylint</kbd>
+                but is not always the case.
+                <br>
+                These small omissions cause a lot of going back and forth
+                wasting the reviewers precious time.
+            </p>
+
+            <div class="card">
+                <div class="card-header">
+                    Python
+                </div>
+                <div class="card-block">
+                    <h4 class="card-title">
+                        Trailing commas
+                        <a href="#TrailingCommaRationale"
+                            data-toggle="collapse"
+                            aria-expanded="false"
+                            aria-controls="TrailingCommaRationale">
+                        <i class="fa fa-commenting"></i>
+                      </a>
+                    </h4>
+                    <div class="collapse" id="TrailingCommaRationale">
+                          <p class="lead">
+                              Leaving a <strong>trailing comma</strong> on the last entry
+                              is useful because then every line has the same format
+                              and adding entries to the end is the same as adding them
+                              to the middle.
+                          </p>
+                    </div>
+                    <p class="card-text">
+                        <strong>Dictionaries</strong>
+                        <div class="highlight"><pre><span></span><span class="c1"># GOOD.</span>
+<span class="n">my_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<span class="c1"># BAD.</span>
+<span class="n">my_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">}</span>
+
+<span class="c1"># BAD.</span>
+<span class="c1"># This is bad with or without the trailing comma as it&#39;s hard to read.</span>
+<span class="n">my_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+
+
+                        <strong>Calling Functions</strong>
+                        <div class="highlight"><pre><span></span><span class="c1"># GOOD.</span>
+<span class="n">call_some_function</span><span class="p">(</span>
+    <span class="n">param1</span><span class="p">,</span>
+    <span class="n">param2</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># GOOD.</span>
+<span class="c1"># If the function doesn&#39;t expect more parameters, a closing parenthesis `)`</span>
+<span class="c1"># can be placed at the end of the last parameter.</span>
+<span class="n">call_some_function</span><span class="p">(</span>
+    <span class="n">param1</span><span class="p">,</span>
+    <span class="n">param2</span><span class="p">)</span>
+
+<span class="c1"># GOOD.</span>
+<span class="n">call_some_function</span><span class="p">(</span>
+    <span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">)</span>
+
+
+<span class="c1"># BAD.</span>
+<span class="n">call_some_function</span><span class="p">(</span>
+    <span class="n">param1</span><span class="p">,</span> <span class="n">param2</span>
+<span class="p">)</span>
+
+<span class="c1"># BAD.</span>
+<span class="n">call_some_function</span><span class="p">(</span>
+    <span class="n">param1</span><span class="p">,</span>
+    <span class="n">param2</span>
+<span class="p">)</span>
+
+<span class="c1"># BAD.</span>
+<span class="n">call_some_function</span><span class="p">(</span><span class="n">param1</span><span class="p">,</span>
+    <span class="n">param2</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># BAD.</span>
+<span class="n">call_some_function</span><span class="p">(</span><span class="n">param1</span><span class="p">,</span>
+    <span class="n">param2</span><span class="p">)</span>
+</pre></div>
+
+                    </p>
+                    <h4 class="card-title">
+                        Breaking long lines
+                        <a href="#BreakLongLinesRationale"
+                            data-toggle="collapse"
+                            aria-expanded="false"
+                            aria-controls="BreakLongLinesRationale">
+                        <i class="fa fa-commenting"></i>
+                      </a>
+                    </h4>
+                    <div class="collapse" id="BreakLongLinesRationale">
+                          <p class="lead">
+                              <strong>PEP8</strong> recommend limiting all lines to a maximum of
+                              <a href="https://www.python.org/dev/peps/pep-0008/#id19">79 characters.</a>
+                              <br>
+                              However there are some projects that raised the limit to 119 characters.
+                              <br>
+                              My recommendation is to stick to 79 characters even when working on projects with
+                              a longer limit and only use the extra limit when breaking the line makes it harder
+                              to read.
+                          </p>
+                    </div>
+                    <p class="card-text">
+                        Even though <strong>PEP8</strong> considers <strong>backslashes</strong>
+                        appropriate in some cases. They are totally discouraged in this guide.
+                        <br>
+                        The reason for that is that other alternatives are better and errors could be caused
+                        if a space is added after the <strong>backslash</strong>.
+                        <br>
+                        <strong>Alternatives to break long lines:</strong>
+                        <div class="highlight"><pre><span></span><span class="c1"># Parenthesis. Case 1.</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">something</span> <span class="o">==</span> <span class="bp">True</span> <span class="ow">and</span>
+        <span class="n">something_else</span> <span class="o">==</span> <span class="bp">False</span><span class="p">):</span>
+
+
+<span class="c1"># Parenthesis. Case 2.</span>
+<span class="n">string</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;This string is too long to fit.&#39;</span>
+<span class="p">)</span>
+
+<span class="n">string</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;This string is too long to fit.&#39;</span>
+    <span class="s1">&#39; This one is even longer.&#39;</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Parenthesis. Case 3.</span>
+<span class="k">assert</span> <span class="n">val</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">,</span> <span class="p">(</span>
+    <span class="s2">&quot;val is too small&quot;</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">val</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">,</span> <span class="p">(</span>
+    <span class="s2">&quot;val is too small&quot;</span>
+<span class="p">)</span>
+</pre></div>
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="border"></div>
+</div>
+
+
+                    <!-- @ @include('./content/gherkin.html', {"id": "gherkin" }) -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://use.fontawesome.com/94aab88a18.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+
+<script src="js/navigation.js"></script>
+
+</body>
+</html>
