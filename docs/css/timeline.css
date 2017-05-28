@@ -69,7 +69,6 @@
 
 .main-timeline .timeline:nth-child(2n) .timeline-content{
     float: right;
-    text-align: right;
 }
 
 .main-timeline .title{
