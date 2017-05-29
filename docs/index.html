@@ -37,6 +37,10 @@
                         <a class="nav-link" href="#formatting">Code lay-out</a>
                     </li>
                 
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gherkin">Gherkin</a>
+                    </li>
+                
             </ul>
             <span class="navbar-text">
                 Before asking for a Code Review...
@@ -48,7 +52,7 @@
 
     <!--
         { "id": "style", "title": "Style" },
-        { "id": "gherkin", "title": "Gherkin" }
+
     -->
 
 
@@ -124,7 +128,7 @@
                       </a>
                     </h4>
                     <div class="collapse" id="TrailingCommaRationale">
-                          <p class="lead">
+                          <p >
                               Leaving a <strong>trailing comma</strong> on the last entry
                               is useful because then every line has the same format
                               and adding entries to the end is the same as adding them
@@ -258,7 +262,50 @@
 </div>
 
 
-                    <!-- @ @include('./content/gherkin.html', {"id": "gherkin" }) -->
+                    <div id="gherkin" class="timeline">
+    <div class="timeline-icon"><i class="fa fa-rocket"></i></div>
+    <div class="timeline-content">
+        <h4 class="title">Gherkin (Aloe tests)</h4>
+        <p class="description">
+            The main purpose of Gherkin is to allow writing tests from the
+            point of view of the <strong>user</strong> using an easy to
+            understand language.
+
+            Before asking for a code review, read the steps aloud to yourself,
+            they should sound grammatically coherent.
+            <br>
+
+            <div class="highlight"><pre><span></span><span class="k">Feature:</span><span class="nf"> Examples of grammar in Scenarios.</span>
+
+<span class="nf">    As a developer</span>
+<span class="nf">    I should write coherent and grammatically correct scenarios</span>
+<span class="nf">    So that the attention focus on what the test does not how bad it sounds.</span>
+
+<span class="nf">    </span><span class="k">Scenario:</span><span class="nf"> A good scenario.</span>
+<span class="k">        Given </span><span class="nf">there is a user &quot;</span><span class="s">username</span><span class="nf">&quot; in the database</span>
+<span class="nf">        </span><span class="k">When </span><span class="nf">I login with &quot;</span><span class="s">username</span><span class="nf">&quot;</span>
+<span class="nf">        </span><span class="k">Then </span><span class="nf">the page title should be &quot;</span><span class="s">Welcome</span><span class="nf">&quot;</span>
+
+<span class="nf">    </span><span class="k">Scenario:</span><span class="nf"> A bad scenario.</span>
+<span class="k">        And </span><span class="nf">there is a user &quot;</span><span class="s">username</span><span class="nf">&quot; in the database</span>
+<span class="nf">        </span><span class="k">Given </span><span class="nf">I login with &quot;</span><span class="s">username</span><span class="nf">&quot;</span>
+<span class="nf">        </span><span class="k">Then </span><span class="nf">the page title should be &quot;</span><span class="s">Welcome</span><span class="nf">&quot;</span>
+
+<span class="nf">    </span><span class="k">Scenario:</span><span class="nf"> Another bad scenario.</span>
+<span class="k">        Given </span><span class="nf">there is a user &quot;</span><span class="s">username</span><span class="nf">&quot; in the database</span>
+<span class="nf">        </span><span class="k">Given </span><span class="nf">I login with &quot;</span><span class="s">username</span><span class="nf">&quot;</span>
+<span class="nf">        </span><span class="k">Then </span><span class="nf">the page title should be &quot;</span><span class="s">Welcome</span><span class="nf">&quot;</span>
+</pre></div>
+
+
+            <br>
+            <h4>Format Tables</h4>
+            Tables should look like tables,
+        </p>
+    </div>
+    <div class="border"></div>
+</div>
+
                 </div>
             </div>
         </div>

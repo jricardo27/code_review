@@ -13,12 +13,13 @@
     @@include('./include/navigation.html', {
         "sections": [
             { "id": "top", "title": "Top" },
-            { "id": "formatting", "title": "Code lay-out" }
+            { "id": "formatting", "title": "Code lay-out" },
+            { "id": "gherkin", "title": "Gherkin" }
     ]})
 
     <!--
         { "id": "style", "title": "Style" },
-        { "id": "gherkin", "title": "Gherkin" }
+
     -->
 
 
@@ -59,7 +60,7 @@
 
                     @@include('./content/formatting.html', {"id": "formatting" })
 
-                    <!-- @ @include('./content/gherkin.html', {"id": "gherkin" }) -->
+                    @@include('./content/gherkin.html', {"id": "gherkin" })
                 </div>
             </div>
         </div>
