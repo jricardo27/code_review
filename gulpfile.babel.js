@@ -18,11 +18,10 @@ const dirs = {
  * Source code locations
  */
 const source = {
-    code: {
-        python: [
-            `${dirs.src}/code/**/*.py`,
-        ],
-    },
+    code: [
+        `${dirs.src}/code/**/*.py`,
+        `${dirs.src}/code/**/*.feature`,
+    ],
     css: [
         `${dirs.src}/css/**/*`,
     ],
@@ -84,7 +83,7 @@ gulp.task('highlight', function () {
         pipeStdout: true, // default = false, true means stdout is written to file.contents
     };
 
-    return gulp.src(source.code.python)
+    return gulp.src(source.code)
         .pipe(exec('pygmentize -f html <%= file.path %>', options))
         .pipe(gulp.dest(`${dirs.src}/html/include/code`))
 });
