@@ -1,0 +1,28 @@
+1  {% for object in objects %}
+2  <div class="box" aria-label="Object details" more-attributes="true" even-more-attributes="false">
+3      <h2>{{ obj.title }}</h2>
+4      <div id="contentId"
+5           class="content">
+6          {{ obj.description}}
+7          <div style="display: none">
+8              {{ obj.extra_details }}
+9          </div>
+10     </div>
+11 </div>
+12 {% endfor %}
+
+
+Lines 1-2, No indentation after `{{ for }}`.
+Line 2, Attributes in one line are harder to
+    read.
+Line 2, If adding more attributes the line
+    gets even longer.
+Lines 4-6, No extra indentation of attributes
+    makes hard to notice where the div content
+    is.
+Line 6, Variable tag is not formatted
+    correctly: a space is missing before the
+    closing `}}`
+Line 7, Inline styles are not recommended as
+    they are hard to maintain. CSS class
+    should be use instead.

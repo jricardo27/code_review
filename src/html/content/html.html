@@ -1,0 +1,40 @@
+<div id="@@id" class="timeline">
+    <div class="timeline-icon"><i class="fa fa-code"></i></div>
+    <div class="timeline-content">
+        <h4 class="title">HTML</h4>
+        <div class="description">
+            <p>
+               HTML is a messy language, our efforts should go towards make it
+               if not less messy at least easier to read.
+            </p>
+            <h5 id="html_recommendations">Recommendations</h5>
+            <ol>
+                <li>Indentation makes it easier to read.</li>
+                <li>Align attributes and use extra indentation if necessary.</li>
+                <li>
+                    Try to keep lines short, lines can be break by:
+                    <ul>
+                        <li>Placing closing tag on the next line.</li>
+                        <li>Putting attributes in multiple lines.</li>
+                        <li>Placing the content on the next line.</li>
+                    </ul>
+                </li>
+                <li>Do not use inline styles. Use CSS classes instead.</li>
+                <li id="django_include">
+                    When possible, create small templates (Django) and include
+                    then to avoid repeating code.
+                    Remember that you can set variables. See
+                    <a href="https://docs.djangoproject.com/es/1.10/ref/templates/builtins/#include">
+                        include.
+                    </a>
+                </li>
+            </ol>
+            <h5>Bad Example:</h5>
+            @@include('../../html/include/code/html/bad.html')
+
+            <h5>Good Example:</h5>
+            @@include('../../html/include/code/html/good.html')
+        </div>
+    </div>
+    <div class="border"></div>
+</div>
