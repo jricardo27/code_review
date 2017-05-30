@@ -1,0 +1,32 @@
+1  {% for object in objects %}
+2      <div    class="box"
+3              aria-label="Object details"
+4              more-attributes="true"
+5              even-more-attributes="false"
+6      >
+7          <h2>{{ obj.title }}</h2>
+8          <div    id="contentId"
+9                  class="content">
+10             {{ obj.description }}
+11             <div class="hidden">
+12                 {{ obj.extra_details }}
+13             </div>
+14         </div>
+15     </div>
+16 {% endfor %}
+
+
+Line 1-2, All code is indented after
+    `{{ for }}` making it easier to see what's
+    inside and where the block ends.
+Lines 2-5, Attributes are aligned and have
+    one more extra indentation.
+Line 6, Even though uncommon, closing the
+    tag on a separate line makes it easier to
+    add more attributes.
+    It also adds a blank space between the
+    tag and it's content.
+    It's also OK to close the tag at the end
+    of the last attribute (Line 9).
+Line 11, A CSS class is used instead of an
+    inline style.

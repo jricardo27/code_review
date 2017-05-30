@@ -19,8 +19,7 @@ const dirs = {
  */
 const source = {
     code: [
-        `${dirs.src}/code/**/*.py`,
-        `${dirs.src}/code/**/*.feature`,
+        `${dirs.src}/code/**/*.*`,
     ],
     css: [
         `${dirs.src}/css/**/*`,

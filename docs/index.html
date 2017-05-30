@@ -13,11 +13,12 @@
 <link rel="stylesheet" href="css/timeline.css">
 <link rel="stylesheet" href="css/pygments.css">
 <link rel="stylesheet" href="css/navigation.css">
+<link rel="stylesheet" href="css/anchor_highlight.css">
 
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top"
       screen_capture_injected="true" cz-shortcut-listen="true">
-    <nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-primary"
+    <nav class="navbar fixed-bottom navbar-toggleable-md navbar-inverse bg-primary"
      role="navigation">
     <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -41,6 +42,10 @@
                         <a class="nav-link" href="#gherkin">Gherkin</a>
                     </li>
                 
+                    <li class="nav-item">
+                        <a class="nav-link" href="#html">HTML</a>
+                    </li>
+                
             </ul>
             <span class="navbar-text">
                 Before asking for a Code Review...
@@ -59,20 +64,21 @@
     <div class="container">
         <div id="top" class="jumbotron">
             <h1 class="justify-content-center">Tips before asking for a Code Review...</h1>
-            <p class="lead">
-                Before asking for a <strong>Code Review</strong> please do one yourself
-                over your own Pull Request (PR).
+            <p id="before_asking_for_code_review" class="lead">
+                Before asking for a <strong>Code Review</strong> <i>please do one yourself
+                over your own Pull Request</i> (PR).
             </p>
             <hr class="my-4">
             <p>The following is a list of the most frequent flaws found in code reviews.</p>
-            <p>
-                These rules align with <strong>PEP8</strong> and in some cases discard some
-                of the alternatives proposed as the other are better.
+            <p id="pep8">
+                These rules align with <strong>PEP8</strong> and <i>in some cases discard some
+                of the alternatives proposed</i> as the others are better.
                 <br>
 
                 For example the following two cases are considered valid by
                 <a href="https://www.python.org/dev/peps/pep-0008/#id17"><strong>PEP8</strong></a>:
             </p>
+
             <div class="highlight"><pre><span></span><span class="n">foo</span> <span class="o">=</span> <span class="n">long_function_name</span><span class="p">(</span>
     <span class="n">var_one</span><span class="p">,</span> <span class="n">var_two</span><span class="p">,</span> <span class="n">var_three</span><span class="p">,</span> <span class="n">var_four</span><span class="p">)</span>
 </pre></div>
@@ -266,16 +272,19 @@
     <div class="timeline-icon"><i class="fa fa-rocket"></i></div>
     <div class="timeline-content">
         <h4 class="title">Gherkin (Aloe tests)</h4>
-        <p class="description">
-            The main purpose of Gherkin is to allow writing tests from the
-            point of view of the <strong>user</strong> using an easy to
-            understand language.
+        <div class="description">
+            <p>
+                The main purpose of Gherkin is to allow
+                <i id="user_point_of_view">writing tests from the point of view
+                of the <strong>user</strong></i> using an easy to understand
+                language.
+            </p>
+            <p id="">
+                Before asking for a code review, read the steps aloud to yourself,
+                they should sound grammatically coherent.
+                <br>
 
-            Before asking for a code review, read the steps aloud to yourself,
-            they should sound grammatically coherent.
-            <br>
-
-            <div class="highlight"><pre><span></span><span class="k">Feature:</span><span class="nf"> Examples of grammar in Scenarios.</span>
+                <div class="highlight"><pre><span></span><span class="k">Feature:</span><span class="nf"> Examples of grammar in Scenarios.</span>
 
 <span class="nf">    As a developer</span>
 <span class="nf">    I should write coherent and grammatically correct scenarios</span>
@@ -297,9 +306,143 @@
 <span class="nf">        </span><span class="k">Then </span><span class="nf">the page title should be &quot;</span><span class="s">Welcome</span><span class="nf">&quot;</span>
 </pre></div>
 
-
+            </p>
             <br>
-        </p>
+            <h5 id="gherkin_recommendations">Recommendations:</h5>
+            <ol>
+                <li>Try to perform all the application setup before logging in. e,g:
+                    <ul>
+                        <li>Create model objects.</li>
+                        <li>Load fixtures.</li>
+                    </ul>
+                </li>
+                <li>
+                    Prefer using <strong>`Given`</strong> for setup steps. It is
+                    "ok" to use it for user actions defined in the
+                    <strong>`Background`</strong>.
+                </li>
+                <li>
+                    Separate sets of actions with a blank line:
+                    <div class="highlight"><pre><span></span><span class="k">When </span><span class="nf">I login with &quot;</span><span class="s">username</span><span class="nf">&quot;</span>
+<span class="k">Then </span><span class="nf">the page title should be &quot;</span><span class="s">Welcome</span><span class="nf">&quot;</span>
+
+<span class="k">When </span><span class="nf">I click &quot;</span><span class="s">My Account</span><span class="nf">&quot;</span>
+<span class="k">Then </span><span class="nf">I should see &quot;</span><span class="s">My name</span><span class="nf">&quot;</span>
+
+<span class="k">When </span><span class="nf">I press &quot;</span><span class="s">Edit</span><span class="nf">&quot;</span>
+<span class="k">And </span><span class="nf">I fill in &quot;</span><span class="s">Name</span><span class="nf">&quot; with &quot;</span><span class="s">Another name</span><span class="nf">&quot;</span>
+<span class="k">And </span><span class="nf">I press &quot;</span><span class="s">Save</span><span class="nf">&quot;</span>
+<span class="k">Then </span><span class="nf">I should see &quot;</span><span class="s">Changes saved succesfully</span><span class="nf">&quot;</span>
+<span class="k">And </span><span class="nf">I should see &quot;</span><span class="s">Another name</span><span class="nf">&quot;</span>
+</pre></div>
+
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="border"></div>
+</div>
+
+
+                    <div id="html" class="timeline">
+    <div class="timeline-icon"><i class="fa fa-code"></i></div>
+    <div class="timeline-content">
+        <h4 class="title">HTML</h4>
+        <div class="description">
+            <p>
+               HTML is a messy language, our efforts should go towards make it
+               if not less messy at least easier to read.
+            </p>
+            <h5 id="html_recommendations">Recommendations</h5>
+            <ol>
+                <li>Indentation makes it easier to read.</li>
+                <li>Align attributes and use extra indentation if necessary.</li>
+                <li>
+                    Try to keep lines short, lines can be break by:
+                    <ul>
+                        <li>Placing closing tag on the next line.</li>
+                        <li>Putting attributes in multiple lines.</li>
+                        <li>Placing the content on the next line.</li>
+                    </ul>
+                </li>
+                <li>Do not use inline styles. Use CSS classes instead.</li>
+                <li id="django_include">
+                    When possible, create small templates (Django) and include
+                    then to avoid repeating code.
+                    Remember that you can set variables. See
+                    <a href="https://docs.djangoproject.com/es/1.10/ref/templates/builtins/#include">
+                        include.
+                    </a>
+                </li>
+            </ol>
+            <h5>Bad Example:</h5>
+            <div class="highlight"><pre><span></span>1  {% for object in objects %}
+2  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;box&quot;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;Object details&quot;</span> <span class="na">more-attributes</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="na">even-more-attributes</span><span class="o">=</span><span class="s">&quot;false&quot;</span><span class="p">&gt;</span>
+3      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>{{ obj.title }}<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+4      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;contentId&quot;</span>
+<span class="na">5</span>           <span class="na">class</span><span class="o">=</span><span class="s">&quot;content&quot;</span><span class="p">&gt;</span>
+6          {{ obj.description}}
+7          <span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;display: none&quot;</span><span class="p">&gt;</span>
+8              {{ obj.extra_details }}
+9          <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+10     <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+11 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+12 {% endfor %}
+
+
+Lines 1-2, No indentation after `{{ for }}`.
+Line 2, Attributes in one line are harder to
+    read.
+Line 2, If adding more attributes the line
+    gets even longer.
+Lines 4-6, No extra indentation of attributes
+    makes hard to notice where the div content
+    is.
+Line 6, Variable tag is not formatted
+    correctly: a space is missing before the
+    closing `}}`
+Line 7, Inline styles are not recommended as
+    they are hard to maintain. CSS class
+    should be use instead.
+</pre></div>
+
+
+            <h5>Good Example:</h5>
+            <div class="highlight"><pre><span></span>1  {% for object in objects %}
+2      <span class="p">&lt;</span><span class="nt">div</span>    <span class="na">class</span><span class="o">=</span><span class="s">&quot;box&quot;</span>
+<span class="na">3</span>              <span class="na">aria-label</span><span class="o">=</span><span class="s">&quot;Object details&quot;</span>
+<span class="na">4</span>              <span class="na">more-attributes</span><span class="o">=</span><span class="s">&quot;true&quot;</span>
+<span class="na">5</span>              <span class="na">even-more-attributes</span><span class="o">=</span><span class="s">&quot;false&quot;</span>
+<span class="na">6</span>      <span class="p">&gt;</span>
+7          <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>{{ obj.title }}<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+8          <span class="p">&lt;</span><span class="nt">div</span>    <span class="na">id</span><span class="o">=</span><span class="s">&quot;contentId&quot;</span>
+<span class="na">9</span>                  <span class="na">class</span><span class="o">=</span><span class="s">&quot;content&quot;</span><span class="p">&gt;</span>
+10             {{ obj.description }}
+11             <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;hidden&quot;</span><span class="p">&gt;</span>
+12                 {{ obj.extra_details }}
+13             <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+14         <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+15     <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+16 {% endfor %}
+
+
+Line 1-2, All code is indented after
+    `{{ for }}` making it easier to see what&#39;s
+    inside and where the block ends.
+Lines 2-5, Attributes are aligned and have
+    one more extra indentation.
+Line 6, Even though uncommon, closing the
+    tag on a separate line makes it easier to
+    add more attributes.
+    It also adds a blank space between the
+    tag and it&#39;s content.
+    It&#39;s also OK to close the tag at the end
+    of the last attribute (Line 9).
+Line 11, A CSS class is used instead of an
+    inline style.
+</pre></div>
+
+        </div>
     </div>
     <div class="border"></div>
 </div>
@@ -308,7 +451,6 @@
             </div>
         </div>
     </div>
-
 
 
     <script src="https://use.fontawesome.com/94aab88a18.js"></script>
