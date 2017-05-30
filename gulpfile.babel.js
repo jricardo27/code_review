@@ -25,13 +25,13 @@ const source = {
         `${dirs.src}/css/**/*`,
     ],
     html: [
-        `${dirs.src}/html/index.html`,
+        `${dirs.src}/html/!(_*.html)`,
     ],
     js: [
         `${dirs.src}/js/**/*`,
     ],
     sass: [
-        `${dirs.src}/scss/**/!(_*.scss)s`,
+        `${dirs.src}/scss/**/!(_*.scss)`,
     ]
 };
 
