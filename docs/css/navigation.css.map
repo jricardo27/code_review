@@ -1,1 +1,1 @@
-{"version":3,"file":"navigation.css","sources":["navigation.scss"],"sourcesContent":["$nav-height: 40px;\n\nbody {\n    padding-top: $nav-height;\n    padding-bottom: $nav-height * 2;\n}\n"],"names":[],"mappings":"AAEA,AAAA,IAAI,CAAC;EACD,WAAW,EAHF,IAAI;EAIb,cAAc,EAAE,IAAe,GAClC"}
+{"version":3,"file":"navigation.css","sources":["navigation.scss"],"sourcesContent":["$nav-height: 40px;\n\nbody {\n    padding-bottom: $nav-height * 2;\n}\n"],"names":[],"mappings":"AAEA,AAAA,IAAI,CAAC;EACD,cAAc,EAAE,IAAe,GAClC"}

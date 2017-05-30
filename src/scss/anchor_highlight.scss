@@ -1,0 +1,16 @@
+:target {
+    box-shadow: 0 0 2px gray;
+}
+
+/* You can use pseudo-elements inside a target element. */
+:target::before {
+    font: 70% sans-serif;
+    content: "►";
+    color: gray;
+    margin-right: .25em;
+}
+
+/* You can apply special styles to elements within a target element. */
+:target i {
+    color: orange;
+}

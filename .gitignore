@@ -2,6 +2,7 @@
 .localpython/
 .src/
 node_modules/
+python_env/
 
 # Exclude intermediary compiled files
 src/html/include/code
