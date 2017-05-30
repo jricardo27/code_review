@@ -32,7 +32,7 @@ const source = {
         `${dirs.src}/js/**/*`,
     ],
     sass: [
-        `${dirs.src}/scss/navigation.scss`,
+        `${dirs.src}/scss/**/!(_*.scss)s`,
     ]
 };
 
