@@ -1,0 +1,39 @@
+<div class="container">
+    <div id="top" class="jumbotron">
+        <h1 class="justify-content-center">Checklist before asking for a Code Review...</h1>
+
+        <div class="description">
+            <br>
+            <h4>General</h4>
+            @@include("../include/checkbox_list.html", {"checkboxes": [
+                "Did you review your own Pull Request?",
+                "Are all trailing commas present?",
+                "Did you copy a block of code? Did you update the docstrings?"
+            ]})
+
+            <br>
+            <h4>Python</h4>
+            @@include("../include/checkbox_list.html", {"checkboxes": [
+                "Do you have duplicate code? Why?",
+                "Does your docstrings use the imperative mood?"
+            ]})
+
+            <br>
+            <h4>Gherkin (Aloe Tests)</h4>
+            @@include("../include/checkbox_list.html", {"checkboxes": [
+                "Are the `Given`, `When` and `Then` in the correct order and not two of the same consecutively?",
+                "Do tables look like tables?",
+                "Are `Scenarios` spaced with two blank lines?",
+                "Did you read the whole scenario? Does it sounds coherent?"
+            ]})
+
+            <br>
+            <h4>HTML</h4>
+            @@include("../include/checkbox_list.html", {"checkboxes": [
+                "Are all tags (including Django template tags) indented?",
+                "Are tag attributes distributed in multiple lines?",
+                "Did you copy the template? Did you delete those imports you are not using?"
+            ]})
+        </div>
+    </div>
+</div>
