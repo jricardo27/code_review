@@ -2,19 +2,40 @@
     <div class="timeline-icon"><i class="fa fa-rocket"></i></div>
     <div class="timeline-content">
         <h4 class="title">Gherkin (Aloe tests)</h4>
-        <p class="description">
-            The main purpose of Gherkin is to allow writing tests from the
-            point of view of the <strong>user</strong> using an easy to
-            understand language.
+        <div class="description">
+            <p>
+                The main purpose of Gherkin is to allow
+                <i id="user_point_of_view">writing tests from the point of view
+                of the <strong>user</strong></i> using an easy to understand
+                language.
+            </p>
+            <p id="">
+                Before asking for a code review, read the steps aloud to yourself,
+                they should sound grammatically coherent.
+                <br>
 
-            Before asking for a code review, read the steps aloud to yourself,
-            they should sound grammatically coherent.
+                @@include('../include/code/gherkin/grammar.feature')
+            </p>
             <br>
-
-            @@include('../include/code/grammar.feature')
-
-            <br>
-        </p>
+            <h5 id="gherkin_recommendations">Recommendations:</h5>
+            <ol>
+                <li>Try to perform all the application setup before logging in. e,g:
+                    <ul>
+                        <li>Create model objects.</li>
+                        <li>Load fixtures.</li>
+                    </ul>
+                </li>
+                <li>
+                    Prefer using <strong>`Given`</strong> for setup steps. It is
+                    "ok" to use it for user actions defined in the
+                    <strong>`Background`</strong>.
+                </li>
+                <li>
+                    Separate sets of actions with a blank line:
+                    @@include('../include/code/gherkin/separate_actions.feature')
+                </li>
+            </ol>
+        </div>
     </div>
     <div class="border"></div>
 </div>
