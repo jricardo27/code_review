@@ -2,7 +2,7 @@ Feature: Examples of grammar in Scenarios.
 
     As a developer
     I should write coherent and grammatically correct scenarios
-    So that the attention focus on what the test does not how bad it sounds.
+    So that the attention focuses on what the test does and not how bad it sounds.
 
     Scenario: A good scenario.
         Given there is a user "username" in the database
