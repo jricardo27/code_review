@@ -96,6 +96,295 @@
     <div class="row">
         <div class="col-md-12">
             <div class="main-timeline">
+                <div id="copy_pasta" class="timeline">
+    <div class="timeline-icon"><i class="fa fa-briefcase"></i></div>
+    <div class="timeline-content">
+        <h4 class="title">Copy Pasta</h4>
+        <div class="description">
+            <p>
+                Copying code is one of the easies ways to achieve results,
+                however at the expense of maintainability.
+                <br>
+                The moment you find yourself copying code, stop for a moment
+                and consider if you can do better and factor out the code.
+            </p>
+            <p>
+                The following is a list of common scenarios when you duplicate
+                code and the most common ways to deal with it:
+            </p>
+            <ul>
+                <li>
+                    <strong>Extract it to a base class</strong>
+                    <br>
+                    <p>
+                        So, you find yourself copying a Django View class
+                        (could be any other class) which already implement some
+                        useful things (e.g. authentication, permissions, etc)
+                        why not extract those useful methods into a
+                        <strong>Base Class</strong> or a
+                        <strong>Class Mixin</strong>?
+                        <br>
+                        It's easy:
+                    </p>
+                    <table>
+                        <tr>
+                            <td class="align-top">
+                                <div class="highlight"><pre><span></span><span class="c1"># BAD</span>
+<span class="k">class</span> <span class="nc">AmazingView</span><span class="p">(</span><span class="n">TemplateView</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Display amazing stuff.&quot;&quot;&quot;</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;amazing.html&#39;</span>
+
+    <span class="k">def</span> <span class="nf">amazing_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Do something amazing.&quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Do something amazing with the output.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">amazing_method</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">NotSoAmazingView</span><span class="p">(</span><span class="n">TemplateView</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Display amazing stuff.&quot;&quot;&quot;</span>
+
+    <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;not_so_amazing.html&#39;</span>
+
+    <span class="k">def</span> <span class="nf">amazing_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Do something amazing.&quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Do something amazing with the output.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">amazing_method</span><span class="p">()</span>
+</pre></div>
+
+                            </td>
+                            <td class="align-top">
+                                <div class="highlight"><pre><span></span><span class="c1"># GOOD</span>
+<span class="k">class</span> <span class="nc">AmazingBaseClass</span><span class="p">(</span><span class="n">TemplateView</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for displaying amazing stuff.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">amazing_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Do something amazing.&quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Do something amazing with the output.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">amazing_method</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">AmazingView</span><span class="p">(</span><span class="n">AmazingBaseClass</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Display amazing stuff.&quot;&quot;&quot;</span>
+
+    <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;amazing.html&#39;</span>
+
+
+<span class="k">class</span> <span class="nc">NowImAlsoAnAmazingView</span><span class="p">(</span><span class="n">AmazingBaseClass</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Display some more amazing stuff.&quot;&quot;&quot;</span>
+
+    <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;some_more_amazingness.html&#39;</span>
+</pre></div>
+
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <strong>Factor out common code</strong>
+                    <p>
+                        This time you need to perform certaing operation,
+                        you found out that there is already a
+                        method/function that do almost what you need,
+                        however it does in <italic>green</italic> not in
+                        <italic>blue</italic>, so why not just factor out
+                        the code into a tird method/function and pass the
+                        color a an argument?
+                        <br>
+                        It's easy:
+                    </p>
+                    <table>
+                        <tr>
+                            <td class="align-top">
+                                <div class="highlight"><pre><span></span><span class="c1"># BAD</span>
+<span class="k">def</span> <span class="nf">color_text_in_green</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Color text in green.&quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="s1">&#39;&lt;{color}&gt;{text}&lt;{color}&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span>
+        <span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">color_text_in_blue</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Color text in blue.&quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="s1">&#39;&lt;{color}&gt;{text}&lt;{color}&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+        <span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">color_text_in_green</span><span class="p">(</span><span class="s1">&#39;Grass&#39;</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">color_text_in_blue</span><span class="p">(</span><span class="s1">&#39;Sea&#39;</span><span class="p">))</span>
+</pre></div>
+
+                            </td>
+                            <td class="align-top">
+                                <div class="highlight"><pre><span></span><span class="c1"># GOOD</span>
+<span class="k">def</span> <span class="nf">color_text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Apply the given color to the text.&quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="s1">&#39;&lt;{color}&gt;{text}&lt;{color}&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+        <span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">color_text_in_green</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Color text in green.&quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">color_text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">color_text_in_blue</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Color text in blue.&quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">color_text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">color_text_in_green</span><span class="p">(</span><span class="s1">&#39;Grass&#39;</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">color_text_in_blue</span><span class="p">(</span><span class="s1">&#39;Sea&#39;</span><span class="p">))</span>
+</pre></div>
+
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <strong>Template includes</strong>
+                    <p>
+                        Now you have a bunch of templates to do, easy peasy,
+                        they are all the same, just the title is different.
+                        The above case sounds like the perfect scenario to
+                        use the Django template tag <strong>include</strong>:
+                    </p>
+                    <table>
+                        <tr>
+                            <td class="align-top">
+                                <div class="highlight"><pre><span></span><span class="c">&lt;!-- BAD --&gt;</span>
+
+<span class="c">&lt;!-- model1_details.html --&gt;</span>
+{% extends &quot;app_base.html&quot; %}
+
+{% block breadcrumbs %}
+    Model1
+{% endblock %}
+
+{% block content %}
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Model1 -- {{ object.name }}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">theader</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                {% for header object.headers %}
+                    <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>header<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+                {% endfor %}
+            <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">theader</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                {% for value object.values %}
+                    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>value<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                {% endfor %}
+            <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+{% endblock %}
+
+
+<span class="c">&lt;!-- model2_details.html --&gt;</span>
+{% extends &quot;app_base.html&quot; %}
+
+{% block breadcrumbs %}
+    Model2
+{% endblock %}
+
+{% block content %}
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Model2 -- {{ object.name }}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">theader</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                {% for header object.headers %}
+                    <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>header<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+                {% endfor %}
+            <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">theader</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+                {% for value object.values %}
+                    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>value<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+                {% endfor %}
+            <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+{% endblock %}
+</pre></div>
+
+                            </td>
+                            <td class="align-top">
+                                <div class="highlight"><pre><span></span><span class="c">&lt;!-- GOOD --&gt;</span>
+
+<span class="c">&lt;!-- includes/model_details.html --&gt;</span>
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>{{ model_name }} -- {{ object.name }}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">theader</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+            {% for header object.headers %}
+                <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>header<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+            {% endfor %}
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">theader</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+            {% for value object.values %}
+                <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>value<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+            {% endfor %}
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+
+
+<span class="c">&lt;!-- model1_details.html --&gt;</span>
+{% extends &quot;app_base.html&quot; %}
+
+{% block breadcrumbs %}
+    Model1
+{% endblock %}
+
+{% block content %}
+    {% include &quot;includes/model_details.html&quot; with model_name=&#39;Model1&#39; %}
+{% endblock %}
+
+
+<span class="c">&lt;!-- model2_details.html --&gt;</span>
+{% extends &quot;app_base.html&quot; %}
+
+{% block breadcrumbs %}
+    Model2
+{% endblock %}
+
+{% block content %}
+    {% include &quot;includes/model_details.html&quot; with model_name=&#39;Model2&#39; %}
+{% endblock %}
+</pre></div>
+
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="border"></div>
+</div>
+
+
                 <div id="formatting" class="timeline">
     <div class="timeline-icon"><i class="fa fa-globe"></i></div>
     <div class="timeline-content">
@@ -444,6 +733,7 @@ Line 11, A CSS class is used instead of an
         </div>
     </div>
 </div>
+
 
     <script src="https://use.fontawesome.com/94aab88a18.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
