@@ -1,0 +1,89 @@
+<div id="@@id" class="timeline">
+    <div class="timeline-icon"><i class="fa fa-briefcase"></i></div>
+    <div class="timeline-content">
+        <h4 class="title">Copy Pasta</h4>
+        <div class="description">
+            <p>
+                Copying code is one of the easies ways to achieve results,
+                however at the expense of maintainability.
+                <br>
+                The moment you find yourself copying code, stop for a moment
+                and consider if you can do better and factor out the code.
+            </p>
+            <p>
+                The following is a list of common scenarios when you duplicate
+                code and the most common ways to deal with it:
+            </p>
+            <ul>
+                <li>
+                    <strong>Extract it to a base class</strong>
+                    <br>
+                    <p>
+                        So, you find yourself copying a Django View class
+                        (could be any other class) which already implement some
+                        useful things (e.g. authentication, permissions, etc)
+                        why not extract those useful methods into a
+                        <strong>Base Class</strong> or a
+                        <strong>Class Mixin</strong>?
+                        <br>
+                        It's easy:
+                    </p>
+                    <table>
+                        <tr>
+                            <td class="align-top">
+                                @@include('../include/code/copy_pasta/base_class_bad.py')
+                            </td>
+                            <td class="align-top">
+                                @@include('../include/code/copy_pasta/base_class_good.py')
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <strong>Factor out common code</strong>
+                    <p>
+                        This time you need to perform certaing operation,
+                        you found out that there is already a
+                        method/function that do almost what you need,
+                        however it does in <italic>green</italic> not in
+                        <italic>blue</italic>, so why not just factor out
+                        the code into a tird method/function and pass the
+                        color a an argument?
+                        <br>
+                        It's easy:
+                    </p>
+                    <table>
+                        <tr>
+                            <td class="align-top">
+                                @@include('../include/code/copy_pasta/factor_code_bad.py')
+                            </td>
+                            <td class="align-top">
+                                @@include('../include/code/copy_pasta/factor_code_good.py')
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <strong>Template includes</strong>
+                    <p>
+                        Now you have a bunch of templates to do, easy peasy,
+                        they are all the same, just the title is different.
+                        The above case sounds like the perfect scenario to
+                        use the Django template tag <strong>include</strong>:
+                    </p>
+                    <table>
+                        <tr>
+                            <td class="align-top">
+                                @@include('../include/code/copy_pasta/include_bad.html')
+                            </td>
+                            <td class="align-top">
+                                @@include('../include/code/copy_pasta/include_good.html')
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="border"></div>
+</div>

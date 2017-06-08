@@ -1,0 +1,44 @@
+<!-- GOOD -->
+
+<!-- includes/model_details.html -->
+<h1>{{ model_name }} -- {{ object.name }}</h1>
+<table>
+    <theader>
+        <tr>
+            {% for header object.headers %}
+                <th>header</th>
+            {% endfor %}
+        </tr>
+    </theader>
+    <tbody>
+        <tr>
+            {% for value object.values %}
+                <td>value</td>
+            {% endfor %}
+        </tr>
+    </tbody>
+</table>
+
+
+<!-- model1_details.html -->
+{% extends "app_base.html" %}
+
+{% block breadcrumbs %}
+    Model1
+{% endblock %}
+
+{% block content %}
+    {% include "includes/model_details.html" with model_name='Model1' %}
+{% endblock %}
+
+
+<!-- model2_details.html -->
+{% extends "app_base.html" %}
+
+{% block breadcrumbs %}
+    Model2
+{% endblock %}
+
+{% block content %}
+    {% include "includes/model_details.html" with model_name='Model2' %}
+{% endblock %}

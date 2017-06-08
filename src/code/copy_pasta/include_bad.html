@@ -1,0 +1,56 @@
+<!-- BAD -->
+
+<!-- model1_details.html -->
+{% extends "app_base.html" %}
+
+{% block breadcrumbs %}
+    Model1
+{% endblock %}
+
+{% block content %}
+    <h1>Model1 -- {{ object.name }}</h1>
+    <table>
+        <theader>
+            <tr>
+                {% for header object.headers %}
+                    <th>header</th>
+                {% endfor %}
+            </tr>
+        </theader>
+        <tbody>
+            <tr>
+                {% for value object.values %}
+                    <td>value</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
+
+
+<!-- model2_details.html -->
+{% extends "app_base.html" %}
+
+{% block breadcrumbs %}
+    Model2
+{% endblock %}
+
+{% block content %}
+    <h1>Model2 -- {{ object.name }}</h1>
+    <table>
+        <theader>
+            <tr>
+                {% for header object.headers %}
+                    <th>header</th>
+                {% endfor %}
+            </tr>
+        </theader>
+        <tbody>
+            <tr>
+                {% for value object.values %}
+                    <td>value</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
