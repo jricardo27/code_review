@@ -27,21 +27,21 @@
             <br>
             <h4>General</h4>
             
-    <label class="custom-control custom-checkbox">
+    <label id="own_review" class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input">
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">Did you review your own Pull Request?</span>
     </label>
     <br>
 
-    <label class="custom-control custom-checkbox">
+    <label id="trailing_commas" class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input">
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">Are all trailing commas present?</span>
     </label>
     <br>
 
-    <label class="custom-control custom-checkbox">
+    <label id="lazy_docstrings" class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input">
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">Did you copy a block of code? Did you update the docstrings?</span>
@@ -49,49 +49,58 @@
     <br>
 
 
+
             <br>
             <h4>Python</h4>
             
-    <label class="custom-control custom-checkbox">
+    <label id="duplicate_code" class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input">
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">Do you have duplicate code? Why?</span>
     </label>
     <br>
 
-    <label class="custom-control custom-checkbox">
+    <label id="imperative_mode" class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input">
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">Does your docstrings use the imperative mood?</span>
     </label>
     <br>
 
+    <label id="base_class" class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Did you copy a class? Is it possible to create a base class for both of them?</span>
+    </label>
+    <br>
+
+
 
             <br>
             <h4>Gherkin (Aloe Tests)</h4>
             
-    <label class="custom-control custom-checkbox">
+    <label id="gherkin_order" class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input">
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">Are the `Given`, `When` and `Then` in the correct order and not two of the same consecutively?</span>
     </label>
     <br>
 
-    <label class="custom-control custom-checkbox">
+    <label id="gherkin_table" class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input">
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">Do tables look like tables?</span>
     </label>
     <br>
 
-    <label class="custom-control custom-checkbox">
+    <label id="gherkin_two_spaces" class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input">
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">Are `Scenarios` spaced with two blank lines?</span>
     </label>
     <br>
 
-    <label class="custom-control custom-checkbox">
+    <label id="gherkin_coherence" class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input">
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">Did you read the whole scenario? Does it sounds coherent?</span>
@@ -99,33 +108,43 @@
     <br>
 
 
+
             <br>
             <h4>HTML</h4>
             
-    <label class="custom-control custom-checkbox">
+    <label id="indented_html" class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input">
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">Are all tags (including Django template tags) indented?</span>
     </label>
     <br>
 
-    <label class="custom-control custom-checkbox">
+    <label id="html_attribute_per_line" class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input">
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">Are tag attributes distributed in multiple lines?</span>
     </label>
     <br>
 
-    <label class="custom-control custom-checkbox">
+    <label id="html_unused_import" class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input">
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">Did you copy the template? Did you delete those imports you are not using?</span>
     </label>
     <br>
 
+    <label id="html_duplicate_code" class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Did you copy the template? Is it possible to factor out the code into another template and include it?</span>
+    </label>
+    <br>
+
+
         </div>
     </div>
 </div>
+
 
     <script src="https://use.fontawesome.com/94aab88a18.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"

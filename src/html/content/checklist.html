@@ -6,33 +6,36 @@
             <br>
             <h4>General</h4>
             @@include("../include/checkbox_list.html", {"checkboxes": [
-                "Did you review your own Pull Request?",
-                "Are all trailing commas present?",
-                "Did you copy a block of code? Did you update the docstrings?"
+                ["own_review", "Did you review your own Pull Request?"],
+                ["trailing_commas", "Are all trailing commas present?"],
+                ["lazy_docstrings", "Did you copy a block of code? Did you update the docstrings?"]
             ]})
 
             <br>
             <h4>Python</h4>
             @@include("../include/checkbox_list.html", {"checkboxes": [
-                "Do you have duplicate code? Why?",
-                "Does your docstrings use the imperative mood?"
+                ["duplicate_code", "Do you have duplicate code? Why?"],
+                ["imperative_mode", "Does your docstrings use the imperative mood?"],
+                ["base_class", "Did you copy a class? Is it possible to create a base class for both of them?"]
+
             ]})
 
             <br>
             <h4>Gherkin (Aloe Tests)</h4>
             @@include("../include/checkbox_list.html", {"checkboxes": [
-                "Are the `Given`, `When` and `Then` in the correct order and not two of the same consecutively?",
-                "Do tables look like tables?",
-                "Are `Scenarios` spaced with two blank lines?",
-                "Did you read the whole scenario? Does it sounds coherent?"
+                ["gherkin_order", "Are the `Given`, `When` and `Then` in the correct order and not two of the same consecutively?"],
+                ["gherkin_table", "Do tables look like tables?"],
+                ["gherkin_two_spaces", "Are `Scenarios` spaced with two blank lines?"],
+                ["gherkin_coherence", "Did you read the whole scenario? Does it sounds coherent?"]
             ]})
 
             <br>
             <h4>HTML</h4>
             @@include("../include/checkbox_list.html", {"checkboxes": [
-                "Are all tags (including Django template tags) indented?",
-                "Are tag attributes distributed in multiple lines?",
-                "Did you copy the template? Did you delete those imports you are not using?"
+                ["indented_html", "Are all tags (including Django template tags) indented?"],
+                ["html_attribute_per_line", "Are tag attributes distributed in multiple lines?"],
+                ["html_unused_import", "Did you copy the template? Did you delete those imports you are not using?"],
+                ["html_duplicate_code", "Did you copy the template? Is it possible to factor out the code into another template and include it?"]
             ]})
         </div>
     </div>

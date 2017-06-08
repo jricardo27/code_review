@@ -1,8 +1,8 @@
 @@for (var i = 0; i < checkboxes.length; i++) {
-    <label class="custom-control custom-checkbox">
+    <label id="`+checkboxes[i][0]+`" class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input">
         <span class="custom-control-indicator"></span>
-        <span class="custom-control-description">`+checkboxes[i]+`</span>
+        <span class="custom-control-description">`+checkboxes[i][1]+`</span>
     </label>
     <br>
 }
